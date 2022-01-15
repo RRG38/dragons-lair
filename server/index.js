@@ -9,6 +9,7 @@ const authCtrl = require('./controllers/authController')
 const PORT = 4000
 const { SESSION_SECRET, CONNECTION_STRING } = process.env
 const { register, login, logout } = require('./controllers/authController')
+const { dragonTreasure} = require('./controllers/treasureController')
 
 const app = express()
 
@@ -27,6 +28,8 @@ app.post('/auth/register', register)
 app.post('/auth/login', login);
 
 app.get('/auth/logout', logout);
+
+app.get('/api/treasure/dragon', dragonTreasure);
 
 massive({
   connectionString: CONNECTION_STRING,
