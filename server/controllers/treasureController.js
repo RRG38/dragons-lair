@@ -30,6 +30,15 @@ const addUserTreasure = async (req, res) => {
   }
 }
 
+const getAllTreasure = async (req, res) => {
+  try {
+      const allTreasure = await db(req).get_all_treasure();
+      return res.status(200).send(allTreasure);
+  } catch(err){
+      console.log(`Error retrieving all treasure: ${err}`);
+  }
+}
+
 module.exports = {
-  dragonTreasure, getUserTreasure, addUserTreasure
+  dragonTreasure, getUserTreasure, addUserTreasure, getAllTreasure
 }
