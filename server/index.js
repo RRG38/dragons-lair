@@ -8,7 +8,7 @@ const authCtrl = require('./controllers/authController')
 
 const PORT = 4000
 const { SESSION_SECRET, CONNECTION_STRING } = process.env
-const { register } = require('./controllers/authController')
+const { register, login } = require('./controllers/authController')
 
 const app = express()
 
@@ -23,6 +23,8 @@ app.use(
   )
 
 app.post('/auth/register', register)
+
+app.post('/auth/login', login);
 
 massive({
   connectionString: CONNECTION_STRING,
