@@ -5,7 +5,7 @@ const massive = require('massive')
 const bcrypt = require('bcryptjs')
 
 const { register, login, logout } = require('./controllers/authController')
-const { dragonTreasure, getUserTreasure} = require('./controllers/treasureController')
+const { dragonTreasure, getUserTreasure, addUserTreasure} = require('./controllers/treasureController')
 const { usersOnly, adminsOnly } = require('./middleware/authMiddleware');
 
 const PORT = 4000
@@ -33,6 +33,7 @@ app.get('/auth/logout', logout);
 
 app.get('/api/treasure/dragon', dragonTreasure);
 app.get('/api/treasure/user', usersOnly, getUserTreasure)
+app.post('/api/treasure/user', usersOnly, addUserTreasure);
 
 massive({
   connectionString: CONNECTION_STRING,

@@ -19,6 +19,17 @@ const getUserTreasure = async (req, res) => {
   }
 }
 
+const addUserTreasure = async (req, res) => {
+  const { treasureURL } = req.body;
+  const { id } = req.session.user;
+  try {
+      const userTreasure = await db(req).add_user_treasure([treasureURL, id]);
+      return res.status(200).send(userTreasure);
+  } catch(err){
+      console.log(`Error adding user treasure: ${err}`);
+  }
+}
+
 module.exports = {
-  dragonTreasure, getUserTreasure
+  dragonTreasure, getUserTreasure, addUserTreasure
 }
